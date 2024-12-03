@@ -20,6 +20,8 @@ class StreamPlatformListAV(APIView):
         else:
             return Response(serializer.errors)
         
+        
+        
 class StreamPlatformDetailAV(APIView):
     def get(self, request, pk):
         try:
@@ -59,6 +61,7 @@ class WatchListAV(APIView):
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
+        
         
         
 class WatchDetailAV(APIView):
