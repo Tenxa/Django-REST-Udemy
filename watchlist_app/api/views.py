@@ -9,7 +9,7 @@ from watchlist_app.models import WatchList, StreamPlatform
 class StreamPlatformListAV(APIView):
     def get(self, request):
         stream_platforms = StreamPlatform.objects.all()
-        serializer = StreamPlatformSerializer(stream_platforms, many=True)
+        serializer = StreamPlatformSerializer(stream_platforms, many=True, context={'request': request})
         return Response(serializer.data)
     
     def post(self, request):
@@ -27,7 +27,7 @@ class StreamPlatformDetailAV(APIView):
         except StreamPlatform.DoesNotExist:
             return Response({'error': 'Stream Platform not found'}, status=status.HTTP_404_NOT_FOUND)
         
-        serializer = StreamPlatformSerializer(stream_platform)
+        serializer = StreamPlatformSerializer(stream_platform, context={'request': request})
         return Response(serializer.data)
     
     def put(self, request, pk):
